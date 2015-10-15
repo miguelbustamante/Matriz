@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en-ES">
+  <head>
+	<title>Manejo de Equipos</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<link rel="stylesheet" href="css/alertify.core.css">
+	<link rel="stylesheet" href="css/alertify.default.css">
+	<link rel="stylesheet" href="css/site.css">
+	<link rel="stylesheet" href="css/datepicker.css">
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/alertify.min.js"></script>
+	<script src="js/validator.min.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/perfil.js"></script>
+  </head>
+  <body>
+  <div class="container menu">
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>                        
+				</button>
+				<a class="navbar-brand" href="#">Matriz de equipos</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="HojaPerfil.html">Ingreso Perfil</a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Perfiles<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="perfiles.html">Perfiles por persona</a></li>
+							<li><a href="perfilespuesto.html">Perfiles por puesto</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrativo<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="departamento.html">Departamentos</a></li>
+							<li><a href="programas.html">Programas</a></li>
+							<li><a href="equipos.html">Equipos</a></li>
+							<li><a href="#">Cambiar contraseña de usuario</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="default.html"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	</div>
+	<div class="container">
+		<div class="modal fade" id="addDepto" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Ingresar departamento</h4>
+					</div>
+					<div class="modal-body">
+						<form data-toggle="validator" role="form" id="nuevoDepto">
+							<div class="form-group">
+								<label for="txtDepto" class="control-label">Nombre departamento:</label>
+								<input type="text" class="form-control" id="txtDepto" required>
+							</div>
+							<div class="form-group row-centered">
+								<button type="submit" class="btn btn-success" id="btnIngresarDepto" data-toggle="modal" data-target="#addDepto">Agregar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="addPrograma" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Ingresar programa</h4>
+					</div>
+					<div class="modal-body">
+						<form data-toggle="validator" role="form" id="nuevoPrograma">
+							<div class="form-group">
+								<label for="txtNPrograma" class="control-label">Nombre programa:</label>
+								<input type="text" class="form-control" id="txtNPrograma" required>
+							</div>
+							<div class="form-group row-centered">
+								<button type="submit" class="btn btn-success" id="btnIngresarPrograma" >Agregar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="addPuesto" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Ingresar puesto</h4>
+					</div>
+					<div class="modal-body">
+						<form data-toggle="validator" role="form" id="nuevoPuesto">
+							<div class="form-group">
+								<label for="txtNPuesto" class="control-label">Nombre puesto:</label>
+								<input type="text" class="form-control" id="txtNPuesto" required>
+							</div>
+							<div class="form-group row-centered">
+								<button type="submit" class="btn btn-success" id="btnIngresarPuesto" data-toggle="modal" data-target="#addPuesto">Agregar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="addEmpleado" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Ingresar empleado</h4>
+					</div>
+					<div class="modal-body">
+						<form data-toggle="validator" role="form" id="nuevoEmpleado">
+							<div class="form-group">
+								<label for="txtNombreEmpleado" class="control-label">Nombre(s):</label>
+								<input type="text" class="form-control" id="txtNombreEmpleado" required>
+							</div>
+							<div class="form-group">
+								<label for="txtApellidoEmpleado" class="control-label">Apellido(s):</label>
+								<input type="text" class="form-control" id="txtApellidoEmpleado" required>
+							</div>
+							<div class="form-group row-centered">
+								<button type="submit" class="btn btn-success" id="btnIngresarEmpleado" data-toggle="modal" data-target="#addEmpleado">Agregar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-group">
+			<div class="panel panel-info">
+				<div class="panel-heading">Información del usuario</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-xs-12 col-sm-8">
+							<label>Nombre del usuario:</label>
+							<select id="ddListEmpleados" class="select-style" name="ddListEmpleados"></select>
+							<a href="#" class="btn btn-primary btn-xs" role="button" data-toggle="modal" data-target="#addEmpleado">Agregar empleado</a>
+						</div>
+						<div class="col-xs-12 col-sm-4 form-inline">
+							<label>Fecha:</label> 
+							<input type="text" class="form-control datepicker">
+						</div>
+						
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-6">
+							<label>Puesto que desempeñara:</label> 
+							<select id="ddListPuesto" class="select-style" name="ddListPuesto"></select>
+							<a href="#" class="btn btn-primary btn-xs" role="button" data-toggle="modal" data-target="#addPuesto">Agregar puesto</a>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<label>Departamento:</label> 
+							<select id="ddListDepartamento" class="select-style" name="ddListDepartamento"></select>
+							<a href="#" class="btn btn-primary btn-xs" role="button" data-toggle="modal" data-target="#addDepto">Agregar departamento</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-group">
+			<div class="panel panel-info">
+				<div class="panel-heading">Software y acceso en web</div>
+				<div class="panel-body">
+					<div id="btnDivG">
+						<input type="button" class="progG" data-toggle="popover" style="display:none"/>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<div id="btnDiv">
+						<input type="button" class="progR" data-toggle="popover" style="display:none"/>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-group">
+			<div class="panel panel-info">
+				<div class="panel-heading">Software operacion registral</div>
+				<div class="panel-body">
+					<div id="btnDivOPG">
+						<input type="button" class="progOPG" data-toggle="popover" style="display:none"/>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<div id="btnDivOP">
+						<input type="button" class="progOPR" data-toggle="popover" style="display:none"/>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-group">
+			<div class="panel panel-info">
+				<div class="panel-heading">Información del equipo</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-xs-12 col-sm-4">
+							<label for="ddListEquipo" class="control-label">Seleccionar equipo:</label>
+							<select id="ddListEquipo" class="select-style" name="ddListEquipo"></select>
+							<a href="equipos.html" class="btn btn-primary btn-xs" role="button">Agregar equipo</a>
+						</div>
+						<div class="col-xs-12 col-sm-4">
+							<label for="txtNomModEquipo" class="control-label">Nombre equipo:</label>
+							<input type="text" class="form-control" id="txtNomEquipo" required>
+						</div>
+						<div class="col-xs-12 col-sm-4">
+							<label for="txtIPModEquipo" class="control-label">IP equipo:</label>
+							<input type="text" class="form-control" id="txtIPEquipo" required>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-success" id="btnIngresarPerfil">Guardar</button>
+		<button type="submit" class="btn btn-danger" id="btnCancelarPerfil">Cancelar</button>
+	</div>
+	<footer class="footer">
+      <div class="container foot">
+			<a class="brand" href="#">
+                <img src="image/ab.png" alt="AB Web Design" height="100px">
+            </a>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-ES">
+  <head>
+	<title>Manejo de Equipos</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/site.css">
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<link rel="stylesheet" href="css/alertify.core.css">
+	<link rel="stylesheet" href="css/alertify.default.css">
+	<link rel="stylesheet" href="dataTables/media/css/dataTables.bootstrap.min.css">
+	<link rel="stylesheet" href="css/datepicker.css">
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/alertify.min.js"></script>
+	<script src="js/bootstrap-table.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/validator.min.js"></script>
+	<script src="dataTables/media/js/jquery.dataTables.min.js"></script>
+	<script src="dataTables/media/js/dataTables.bootstrap.min.js"></script>
+	<script src="js/equipos.js"></script>
+	
+  </head>
+  <body>
+	<div class="container menu">
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>                        
+				</button>
+				<a class="navbar-brand" href="#">Matriz de equipos</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="HojaPerfil.html">Ingreso Perfil</a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Perfiles<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="perfiles.html">Perfiles por persona</a></li>
+							<li><a href="perfilespuesto.html">Perfiles por puesto</a></li>
+						</ul>
+					</li>
+					<li class="dropdown active">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrativo<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="departamento.html">Departamentos</a></li>
+							<li><a href="programas.html">Programas</a></li>
+							<li><a href="equipos.html">Equipos</a></li>
+							<li><a href="#">Cambiar contraseña de usuario</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="default.html"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	</div>
+	<div class="container">
+		<div class="modal fade" id="addProyecto" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Ingresar proyecto</h4>
+					</div>
+					<div class="modal-body">
+						<form data-toggle="validator" role="form" id="nuevoProyecto">
+							<div class="form-group">
+								<label>Fecha:</label> 
+								<input type="text" class="form-control datepicker">
+							</div>
+							<div class="form-group row-centered">
+								<button type="submit" class="btn btn-success" id="btnIngresarProyecto" data-toggle="modal" data-target="#addProyecto">Agregar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-group">
+			<div class="panel panel-info">
+				<div class="panel-heading">Nuevo equipo</div>
+				<div class="panel-body">
+					<form data-toggle="validator" role="form" id="nuevoEquipo">
+						<div class="form-group">
+							<label for="txtNomEquipo" class="control-label">Nombre equipo:</label>
+							<input type="text" class="form-control" id="txtNomEquipo" required>
+						</div>
+						<div class="form-group">
+							<label for="txtIPEquipo" class="control-label">IP equipo:</label>
+							<input type="text" class="form-control" id="txtIPEquipo" required>
+						</div>
+						<div class="form-group">
+							<label for="txtNSEquipo" class="control-label">Numero serie del equipo:</label>
+							<input type="text" class="form-control" id="txtNSEquipo" required>
+						</div>
+						<div class="form-group">
+							<label for="txtIDRGP" class="control-label">ID:</label>
+							<input type="text" class="form-control" id="txtIDRGP" required>
+						</div>
+						<div class="form-group">
+							<label for="txtMarca" class="control-label">Marca:</label>
+							<input type="text" class="form-control" id="txtMarca" required>
+						</div>
+						<div class="form-group">
+							<label for="ddListProyecto" class="control-label">Seleccionar proyecto:</label>
+							<select id="ddListProyecto" class="select-style" name="ddListProyecto"></select>
+							<a href="#" class="btn btn-primary btn-xs" role="button" data-toggle="modal" data-target="#addProyecto">Agregar proyecto</a>
+						</div>
+						
+						<div class="form-group row-centered">
+							<button type="submit" class="btn btn-success" id="btnIngresarEquipo">Agregar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="panel-group">
+			<div class="panel panel-info">
+				<div class="panel-heading">Editar equipo</div>
+				<div class="panel-body">
+					<form data-toggle="validator" role="form" id="modEquipo">
+						<div class="form-group">
+							<label for="ddListEquipo" class="control-label">Seleccionar equipo:</label>
+							<select id="ddListEquipo" class="select-style" name="ddListEquipo"></select>
+						</div>
+						<div class="form-group">
+							<label for="txtNomModEquipo" class="control-label">Nombre equipo:</label>
+							<input type="text" class="form-control" id="txtNomModEquipo" required>
+						</div>
+						<div class="form-group">
+							<label for="txtIPModEquipo" class="control-label">IP equipo:</label>
+							<input type="text" class="form-control" id="txtIPModEquipo" required>
+						</div>
+						<div class="form-group">
+							<label for="txtNSModEquipo" class="control-label">Numero serie del equipo:</label>
+							<input type="text" class="form-control" id="txtNSModEquipo" required>
+						</div>
+						<div class="form-group">
+							<label for="txtModIDRGP" class="control-label">ID:</label>
+							<input type="text" class="form-control" id="txtModIDRGP" required>
+						</div>
+						<div class="form-group">
+							<label for="txtModMarca" class="control-label">Marca:</label>
+							<input type="text" class="form-control" id="txtModMarca" required>
+						</div>
+						<div class="checkbox">
+								<label class="control-label"><input type="checkbox" id="equipoActivo" value="">Activo</label>
+						</div>
+						<div class="form-group row-centered">
+							<button type="submit" class="btn btn-success" id="btnModEquipo">Modificar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div>
+			<table id="tblEquipos" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th>Identificador</th>
+						<th>Nombre</th>
+						<th>IP</th>
+						<th>Activo</th>
+						<th>Proyecto</th>
+						<th>N/S</th>
+						<th>ID RGP</th>
+						<th>Marca</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+	<footer class="footer">
+      <div class="container foot">
+			<a class="brand" href="#">
+                <img src="image/ab.png" alt="AB Web Design" height="150px">
+            </a>
+      </div>
+    </footer>
+  </body>
+</html>

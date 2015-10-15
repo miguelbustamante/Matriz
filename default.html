@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-ES">
+  <head>
+	<title>Manejo de Equipos</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<link rel="stylesheet" href="css/alertify.core.css">
+	<link rel="stylesheet" href="css/alertify.default.css">
+	<link rel="stylesheet" href="css/site.css">
+	
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/alertify.min.js"></script>
+	<script src="js/main.js"></script>
+  </head>
+  <body>
+	<div class="container">
+		<div class="row row-centered">
+			<h3><span id="tituloLogIn" class="label label-primary">Matriz de equipos y perfiles</span></h3>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				<img class="img-responsive" src="image/logo.png" alt="Chania">
+			</div>
+			<div class="col-xs-8">
+				<form data-toggle="validator" role="form">
+					<div class="form-group">
+						<label for="txtUsuario" class="control-label">Usuario:</label>
+						<input type="text" class="form-control" id="txtUsuario" placeholder="Usuario" required>
+					</div>
+					<div class="form-group">
+						<label for="txtPassword" class="control-label">Contraseña:</label>
+						<input type="password" class="form-control" id="txtPassword" placeholder="Contraseña" required>
+					</div>
+					<div class="form-group">
+						<button id="btnIngresar" type="submit" class="btn btn-success">Ingresar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer class="footer">
+      <div class="container foot">
+		  <a class="brand" href="#">
+                <img src="image/ab.png" alt="AB Web Design" height="100px">
+		  </a>
+      </div>
+    </footer>
+  </body>
+</html>
